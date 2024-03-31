@@ -9,7 +9,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.Vec3;
@@ -19,7 +18,7 @@ import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(CatwalkRailingBlock.class)
-public abstract class CatwalkRailingBlockMixin implements IWrenchable {
+public class CatwalkRailingBlockMixin implements IWrenchable {
     @Shadow public static BooleanProperty fromDirection(Direction face) { throw new AssertionError(); }
 
     @Shadow @Final public static BooleanProperty EAST_FENCE;
