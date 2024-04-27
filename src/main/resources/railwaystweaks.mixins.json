@@ -7,6 +7,8 @@
     "LivingEntityMixin"
   ],
   "client": [
+    "client.HttpTextureMixin",
+    "client.PlayerRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
