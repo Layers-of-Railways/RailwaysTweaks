@@ -11,7 +11,6 @@ base.archivesName.set("archives_base_name"())
 repositories {
     maven("https://maven.quiltmc.org/repository/release") // Quilt Mappings
     maven("https://maven.parchmentmc.org") // Parchment mappings
-    maven("https://api.modrinth.com/maven") // Create Deco
     maven("https://mvn.devos.one/snapshots/") // Create, Porting Lib, Forge Tags, Milk Lib, Registrate
     maven("https://mvn.devos.one/releases/") // Porting Lib Releases
     maven("https://raw.githubusercontent.com/Fuzss/modresources/main/maven/") // Forge Config API Port
@@ -34,8 +33,6 @@ dependencies {
     modImplementation("net.fabricmc.fabric-api:fabric-api:${"fabric_api_version"()}")
 
     modImplementation("com.simibubi.create:create-fabric-${"minecraft_version"()}:${"create_version"()}")
-
-    modImplementation("maven.modrinth:create-deco:2.0.1-1.20.1-fabric")
 }
 
 tasks.processResources {
