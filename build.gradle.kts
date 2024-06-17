@@ -35,7 +35,7 @@ dependencies {
 
     modImplementation("com.simibubi.create:create-fabric-${"minecraft_version"()}:${"create_version"()}")
     
-    compileOnly("maven.modrinth:copycats:fabric.1.20.1-1.3.2") { isTransitive = false }
+    modCompileOnly("maven.modrinth:copycats:fabric.1.20.1-1.3.2") { isTransitive = false }
 }
 
 tasks.processResources {
