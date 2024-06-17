@@ -17,6 +17,7 @@ repositories {
     maven("https://maven.jamieswhiteshirt.com/libs-release") // Reach Entity Attributes
     maven("https://jitpack.io/") // Fabric ASM
     maven("https://maven.tterrag.com/") // Flywheel
+    maven("https://api.modrinth.com/maven")
 }
 
 dependencies {
@@ -33,6 +34,8 @@ dependencies {
     modImplementation("net.fabricmc.fabric-api:fabric-api:${"fabric_api_version"()}")
 
     modImplementation("com.simibubi.create:create-fabric-${"minecraft_version"()}:${"create_version"()}")
+    
+    compileOnly("maven.modrinth:copycats:fabric.1.20.1-1.3.2") { isTransitive = false }
 }
 
 tasks.processResources {

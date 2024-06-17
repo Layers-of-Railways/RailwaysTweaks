@@ -9,6 +9,7 @@
   ],
   "client": [
     "client.HttpTextureMixin",
+    "client.MultiStateCopycatModelMixin",
     "client.PlayerRendererMixin"
   ],
   "injectors": {
