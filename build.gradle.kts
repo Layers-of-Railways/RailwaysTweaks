@@ -1,7 +1,7 @@
 import net.fabricmc.loom.api.LoomGradleExtensionAPI
 
 plugins {
-    id("fabric-loom") version "1.5.+"
+    id("fabric-loom") version "1.6.+"
 }
 
 version = "mod_version"()
@@ -18,6 +18,7 @@ repositories {
     maven("https://jitpack.io/") // Fabric ASM
     maven("https://maven.tterrag.com/") // Flywheel
     maven("https://api.modrinth.com/maven")
+    maven("https://maven.ithundxr.dev/releases")
 }
 
 dependencies {
@@ -35,6 +36,10 @@ dependencies {
 
     modImplementation("com.simibubi.create:create-fabric-${"minecraft_version"()}:${"create_version"()}")
     
+    modImplementation("com.railwayteam.railways:Steam_Rails-fabric-1.20.1:1.6.4+fabric-mc1.20.1")
+    modImplementation("dev.ithundxr.createnumismatics:CreateNumismatics-fabric-1.20.1:1.0.6+fabric-mc1.20.1")
+
+    // need to fix a crash caused by this
     modCompileOnly("maven.modrinth:copycats:fabric.1.20.1-1.3.2") { isTransitive = false }
 }
 
