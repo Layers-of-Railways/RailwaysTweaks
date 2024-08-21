@@ -1,4 +1,4 @@
-package dev.ithundxr.railwaystweaks.mixin.client;
+package dev.ithundxr.railwaystweaks.mixin.client.compat.copycatsplus;
 
 import com.copycatsplus.copycats.content.copycat.base.model.multistate.fabric.MultiStateCopycatModel;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;

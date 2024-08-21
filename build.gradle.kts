@@ -38,9 +38,10 @@ dependencies {
     
     modImplementation("com.railwayteam.railways:Steam_Rails-fabric-1.20.1:1.6.4+fabric-mc1.20.1")
     modImplementation("dev.ithundxr.createnumismatics:CreateNumismatics-fabric-1.20.1:1.0.6+fabric-mc1.20.1")
-
-    // need to fix a crash caused by this
-    modCompileOnly("maven.modrinth:copycats:fabric.1.20.1-1.3.2") { isTransitive = false }
+    
+    modCompileOnly("maven.modrinth:copycats:fabric.1.20.1-1.3.2")
+    
+    modCompileOnly("maven.modrinth:appleskin:2.5.1+mc1.20")
 }
 
 tasks.processResources {
