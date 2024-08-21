@@ -4,9 +4,10 @@
   "package": "dev.ithundxr.railwaystweaks.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "ServerPlayerMixin",
     "LivingEntityMixin",
-    "ServerStatusPacketListenerImplMixin"
+    "ServerPlayerMixin",
+    "ServerStatusPacketListenerImplMixin",
+    "compat.appleskin.SyncHandlerMixin"
   ],
   "client": [
     "client.HttpTextureMixin",
