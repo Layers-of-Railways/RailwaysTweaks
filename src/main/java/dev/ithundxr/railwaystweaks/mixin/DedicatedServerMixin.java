@@ -19,7 +19,7 @@ import java.lang.management.ManagementFactory;
 import java.lang.management.ThreadInfo;
 import java.lang.management.ThreadMXBean;
 
-@Mixin(value = DedicatedServer.class, priority = 100000000)
+@Mixin(value = DedicatedServer.class, priority = Integer.MAX_VALUE)
 public abstract class DedicatedServerMixin {
     @Shadow @Final static Logger LOGGER;
     
@@ -56,7 +56,7 @@ public abstract class DedicatedServerMixin {
 
         if ("true".equalsIgnoreCase(System.getProperty("railwaystweaks.shutdown.forcefully"))) {
             RailwaysTweaks.LOGGER.info("Force shutting down server, threads will be stuck");
-            System.exit(0);
+            Runtime.getRuntime().halt(0);
         }
     }
 }
