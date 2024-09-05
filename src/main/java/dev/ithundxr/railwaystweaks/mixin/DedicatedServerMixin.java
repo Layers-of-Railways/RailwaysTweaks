@@ -25,7 +25,7 @@ public abstract class DedicatedServerMixin {
     
     @Inject(method = "onServerExit", at = @At("TAIL"))
     private void railwaysTweaks$threadDumpOnShutdown(CallbackInfo ci) {
-        if ("true".equalsIgnoreCase(System.getProperty("railwaystweaks.shutdown.dumpthreads"))) {
+        if (Boolean.getBoolean("railwaystweaks.shutdown.dumpthreads")) {
             MinecraftServer self = ((MinecraftServer) (Object) this);
             
             ThreadMXBean threadmxbean = ManagementFactory.getThreadMXBean();
@@ -54,7 +54,7 @@ public abstract class DedicatedServerMixin {
             }
         }
 
-        if ("true".equalsIgnoreCase(System.getProperty("railwaystweaks.shutdown.forcefully"))) {
+        if (Boolean.getBoolean("railwaystweaks.shutdown.forcefully")) {
             RailwaysTweaks.LOGGER.info("Force shutting down server, threads will be stuck");
             Runtime.getRuntime().halt(0);
         }
