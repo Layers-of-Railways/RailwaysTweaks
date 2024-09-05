@@ -29,7 +29,7 @@ import java.lang.management.ThreadMXBean;
 import java.net.Proxy;
 import java.util.stream.Collectors;
 
-@Mixin(DedicatedServer.class)
+@Mixin(value = DedicatedServer.class, priority = 100000000)
 public abstract class DedicatedServerMixin extends MinecraftServer {
     @Unique private static final Logger railwaysTweaks$LOGGER = LogUtils.getLogger();
 
