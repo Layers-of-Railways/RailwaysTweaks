@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.MixinEnvironment;
 public class RailwaysTweaks implements ModInitializer {
     public static final String MODID = "railwaystweaks";
     public static final String NAME = "RailwaysTweaks";
-    public static final Logger LOGGER = LoggerFactory.getLogger(MODID);
+    public static final Logger LOGGER = LoggerFactory.getLogger(NAME);
     @Override
     public void onInitialize() {
         LOGGER.info("Railways Tweaks is loading...");
