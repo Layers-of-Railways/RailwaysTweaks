@@ -16,6 +16,7 @@ public class ServerPlayerMixin {
     @Inject(method = "tick", at = @At("HEAD"))
     private void railwaysTweaks$preventNullNetworkHandlerCrash(CallbackInfo ci) {
         if (connection == null)
+            //noinspection UnstableApiUsage
             connection = new FakePlayerNetworkHandler((ServerPlayer) (Object) this);
     }
 }

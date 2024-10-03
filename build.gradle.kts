@@ -1,7 +1,7 @@
 import net.fabricmc.loom.api.LoomGradleExtensionAPI
 
 plugins {
-    id("fabric-loom") version "1.6.+"
+    id("fabric-loom") version "1.7.+"
 }
 
 version = "mod_version"()
@@ -26,21 +26,20 @@ dependencies {
 
     val loom = project.extensions.getByType<LoomGradleExtensionAPI>()
     mappings(loom.layered {
-        mappings("org.quiltmc:quilt-mappings:${"minecraft_version"()}+build.${"qm_version"()}:intermediary-v2")
-        parchment("org.parchmentmc.data:parchment-${"minecraft_version"()}:${"parchment_version"()}@zip")
         officialMojangMappings { nameSyntheticMembers = false }
+        parchment("org.parchmentmc.data:parchment-${"minecraft_version"()}:${"parchment_version"()}@zip")
     })
 
     modImplementation("net.fabricmc:fabric-loader:${"fabric_loader_version"()}")
     modImplementation("net.fabricmc.fabric-api:fabric-api:${"fabric_api_version"()}")
 
     modImplementation("com.simibubi.create:create-fabric-${"minecraft_version"()}:${"create_version"()}")
-    
+
     modImplementation("com.railwayteam.railways:Steam_Rails-fabric-1.20.1:1.6.4+fabric-mc1.20.1")
     modImplementation("dev.ithundxr.createnumismatics:CreateNumismatics-fabric-1.20.1:1.0.6+fabric-mc1.20.1")
-    
+
     modCompileOnly("maven.modrinth:copycats:fabric.1.20.1-1.3.2")
-    
+
     modCompileOnly("maven.modrinth:appleskin:2.5.1+mc1.20")
 }
 
