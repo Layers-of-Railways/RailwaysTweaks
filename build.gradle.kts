@@ -19,6 +19,10 @@ repositories {
     maven("https://maven.tterrag.com/") // Flywheel
     maven("https://api.modrinth.com/maven")
     maven("https://maven.ithundxr.dev/releases")
+    maven("https://maven.shedaniel.me/") // Mantle deps
+    exclusiveMaven("https://maven.ladysnake.org/releases", "dev.onyxstudios.cardinal-components-api") // Cardinal Components
+    exclusiveMaven("https://maven.wispforest.io", "me.alphamode")
+    exclusiveMaven("https://maven.terraformersmc.com/releases/", "com.terraformersmc")
 }
 
 dependencies {
@@ -32,6 +36,12 @@ dependencies {
 
     modImplementation("net.fabricmc:fabric-loader:${"fabric_loader_version"()}")
     modImplementation("net.fabricmc.fabric-api:fabric-api:${"fabric_api_version"()}")
+
+    modImplementation("maven.modrinth:hephaestus:${"minecraft_version"()}-${"hephaestus_version"()}")
+    modImplementation("slimeknights.mantle:Mantle:${"minecraft_version"()}-${"mantle_version"()}")
+    for (pl_module in "accessors,attributes,base,brewing,client_events,core,common,config,data,entity,extensions,items,models,model_loader,networking,tags,tool_actions,transfer,fluids,lazy_registration,loot,utility".split(",")) {
+        modRuntimeOnly("io.github.fabricators_of_create.Porting-Lib:${pl_module}:2.3.4+1.20.1")
+    }
 
     modImplementation("com.simibubi.create:create-fabric-${"minecraft_version"()}:${"create_version"()}")
 
@@ -84,4 +94,15 @@ tasks.jar {
 operator fun String.invoke(): String {
     return rootProject.ext[this] as? String
         ?: throw IllegalStateException("Property $this is not defined")
+}
+
+fun RepositoryHandler.exclusiveMaven(url: String, vararg groups: String) {
+    exclusiveContent {
+        forRepository { maven(url) }
+        filter {
+            groups.forEach {
+                includeGroup(it)
+            }
+        }
+    }
 }
