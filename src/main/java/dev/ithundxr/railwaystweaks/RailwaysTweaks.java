@@ -6,7 +6,6 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.spongepowered.asm.mixin.MixinEnvironment;
 import dev.ithundxr.railwaystweaks.commands.RailwaysTweaksCommands;
 
 public class RailwaysTweaks implements ModInitializer {
@@ -20,10 +19,7 @@ public class RailwaysTweaks implements ModInitializer {
 
         RailwaysTweaksCommands.init();
 
-        //if (FabricLoader.getInstance().getEnvironmentType() == EnvType.SERVER)
+        if (FabricLoader.getInstance().getEnvironmentType() == EnvType.SERVER)
             BanModCompat.init();
-
-        //if (FabricLoader.getInstance().isDevelopmentEnvironment())
-        //    MixinEnvironment.getCurrentEnvironment().audit();
     }
 }
