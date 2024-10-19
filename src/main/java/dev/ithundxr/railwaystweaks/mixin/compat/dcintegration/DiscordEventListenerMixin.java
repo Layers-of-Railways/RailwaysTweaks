@@ -9,7 +9,7 @@ import de.erdbeerbaerlp.dcintegration.common.util.McServerInterface;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(targets = "de.erdbeerbaerlp.dcintegration.common.DiscordEventListener")
+@Mixin(targets = "de.erdbeerbaerlp.dcintegration.common.DiscordEventListener", remap = false)
 public class DiscordEventListenerMixin {
     @WrapOperation(method = "onEvent", at = @At(value = "INVOKE", target = "Lde/erdbeerbaerlp/dcintegration/common/util/McServerInterface;sendIngameMessage(Ldcshadow/net/kyori/adventure/text/Component;)V"))
     private void railwayTweaks$addBlockedChars(McServerInterface instance, Component component, Operation<Void> original) {
