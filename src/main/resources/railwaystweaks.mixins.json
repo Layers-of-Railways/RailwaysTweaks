@@ -9,6 +9,7 @@
     "ServerPlayerMixin",
     "ServerStatusPacketListenerImplMixin",
     "compat.appleskin.SyncHandlerMixin",
+    "compat.dcintegration.DiscordEventListenerMixin",
     "compat.tconstruct.SimpleChannelAccessor"
   ],
   "client": [

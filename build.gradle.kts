@@ -23,6 +23,7 @@ repositories {
     exclusiveMaven("https://maven.ladysnake.org/releases", "dev.onyxstudios.cardinal-components-api") // Cardinal Components
     exclusiveMaven("https://maven.wispforest.io", "me.alphamode")
     exclusiveMaven("https://maven.terraformersmc.com/releases/", "com.terraformersmc")
+    exclusiveMaven("https://repo.erdbeerbaerlp.de/repository/maven-public/", "de.erdbeerbaerlp")
     flatDir {
         dirs(setOf("libs"))
     }
@@ -61,6 +62,11 @@ dependencies {
     // Compat
     modImplementation("maven.modrinth:banhammer:0.7.1+1.20.1")
     modImplementation(":ACME_Admin-0.1.0-beta.1+fabric-mc1.20.1-local")
+
+    modImplementation("de.erdbeerbaerlp:dcintegration.common:3.0.7") {
+        isChanging = true
+        isTransitive = false
+    }
 }
 
 tasks.processResources {
