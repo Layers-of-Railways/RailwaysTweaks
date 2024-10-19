@@ -7,8 +7,10 @@ import dcshadow.net.kyori.adventure.text.TextReplacementConfig;
 import de.erdbeerbaerlp.dcintegration.common.util.ComponentUtils;
 import de.erdbeerbaerlp.dcintegration.common.util.McServerInterface;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Pseudo;
 import org.spongepowered.asm.mixin.injection.At;
 
+@Pseudo
 @Mixin(targets = "de.erdbeerbaerlp.dcintegration.common.DiscordEventListener", remap = false)
 public class DiscordEventListenerMixin {
     @WrapOperation(method = "onEvent", at = @At(value = "INVOKE", target = "Lde/erdbeerbaerlp/dcintegration/common/util/McServerInterface;sendIngameMessage(Ldcshadow/net/kyori/adventure/text/Component;)V"))
