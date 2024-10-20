@@ -9,6 +9,8 @@
     "ServerPlayerMixin",
     "ServerStatusPacketListenerImplMixin",
     "compat.appleskin.SyncHandlerMixin",
+    "compat.create.Carriage$DimensionalCarriageEntityMixin",
+    "compat.create.CarriageAccessor",
     "compat.dcintegration.DiscordEventListenerMixin",
     "compat.tconstruct.SimpleChannelAccessor"
   ],
