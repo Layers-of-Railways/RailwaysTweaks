@@ -26,5 +26,10 @@
     "fabricloader": ">=${fabric_loader_version}",
     "fabric-api": ">=${fabric_api_version}",
     "minecraft": "${minecraft_version}"
+  },
+  "custom": {
+    "lithium:options": {
+      "util.block_tracking": false
+    }
   }
 }
