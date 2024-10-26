@@ -25,19 +25,21 @@ public class Carriage$DimensionalCarriageEntityMixin {
 
     @Inject(method = "createEntity", at = @At("HEAD"))
     private void railwaysTweaks$fixDimensionalTrainCrash(Level level, boolean loadPassengers, CallbackInfo ci) {
-        ((CarriageAccessor) this$0).railwaysTweaks$getSerializedEntity().put(
-                "Pos",
-                railwaysTweaks$newDoubleList(
-                        positionAnchor.x(),
-                        positionAnchor.y(),
-                        positionAnchor.z()
-                )
-        );
+        if (positionAnchor != null) {
+            ((CarriageAccessor) this$0).railwaysTweaks$getSerializedEntity().put(
+                    "Pos",
+                    railwaysTweaks$newDoubleList(
+                            positionAnchor.x(),
+                            positionAnchor.y(),
+                            positionAnchor.z()
+                    )
+            );
+        }
     }
     
     @WrapWithCondition(method = "createEntity", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;moveTo(Lnet/minecraft/world/phys/Vec3;)V"))
     private boolean railwaysTweaks$fixDimensionalTrainCrash2(Entity instance, Vec3 vec) {
-        return false;
+        return positionAnchor != null;
     }
 
     @Unique
