@@ -55,7 +55,7 @@ public abstract class DedicatedServerMixin {
         }
 
         if (Boolean.getBoolean("railwaystweaks.shutdown.forcefully")) {
-            RailwaysTweaks.LOGGER.info("Force shutting down server, threads will be stuck");
+            RailwaysTweaks.LOGGER.info("Force shutting down server");
             Runtime.getRuntime().halt(0);
         }
     }
