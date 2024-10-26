@@ -66,7 +66,7 @@ public class BanModCompat {
                 HttpRequest request = HttpRequest.newBuilder()
                         .POST(HttpRequest.BodyPublishers.ofString(dataFormat.formatted(uuid)))
                         .header("Authorization", API_KEY)
-                        .uri(URI.create("https://railways.ithundxr.dev/minecraft/ban"))
+                        .uri(URI.create("https://railways.ithundxr.dev/backend/minecraft/ban"))
                         .build();
 
                 try {
@@ -75,8 +75,7 @@ public class BanModCompat {
                             .followRedirects(HttpClient.Redirect.ALWAYS)
                             .build()
                             .send(request, HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8));
-                } catch (IOException | InterruptedException ignored) {
-                }
+                } catch (IOException | InterruptedException ignored) {}
             });
         }
     }
