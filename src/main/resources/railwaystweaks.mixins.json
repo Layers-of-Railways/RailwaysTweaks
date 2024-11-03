@@ -19,7 +19,8 @@
   "client": [
     "client.HttpTextureMixin",
     "client.PlayerRendererMixin",
-    "client.compat.copycatsplus.MultiStateCopycatModelMixin"
+    "client.compat.copycatsplus.MultiStateCopycatModelMixin",
+    "client.compat.create.ContraptionRenderingWorldMixin"
   ],
   "injectors": {
     "defaultRequire": 1
