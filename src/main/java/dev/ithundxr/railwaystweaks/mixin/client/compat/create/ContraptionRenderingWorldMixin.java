@@ -33,7 +33,7 @@ public abstract class ContraptionRenderingWorldMixin<C extends ContraptionRender
      * @author IThundxr
      * @reason Replace stream with for loops to help with performance
      */
-    @Overwrite
+    @Overwrite(remap = false)
     public void tick() {
         removalTimer++;
         if (removalTimer >= 20) {
@@ -55,7 +55,7 @@ public abstract class ContraptionRenderingWorldMixin<C extends ContraptionRender
      * @author IThundxr
      * @reason Replace stream with for loops to help with performance
      */
-    @Overwrite
+    @Overwrite(remap = false)
     public void beginFrame(BeginFrameEvent event) {
         renderInfos.forEach((key, renderInfo) ->
                 renderInfo.beginFrame(event)
@@ -68,7 +68,7 @@ public abstract class ContraptionRenderingWorldMixin<C extends ContraptionRender
      * @author IThundxr
      * @reason Replace stream with for loops to help with performance
      */
-    @Overwrite
+    @Overwrite(remap = false)
     protected void collectVisible() {
         visible.clear();
 
