@@ -67,6 +67,8 @@ dependencies {
         isChanging = true
         isTransitive = false
     }
+    
+    modCompileOnly("maven.modrinth:enchancement:1.20-26")
 }
 
 tasks.processResources {

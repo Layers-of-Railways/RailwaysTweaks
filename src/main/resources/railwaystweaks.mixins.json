@@ -14,6 +14,7 @@
     "compat.create.Carriage$DimensionalCarriageEntityMixin",
     "compat.create.CarriageAccessor",
     "compat.dcintegration.DiscordEventListenerMixin",
+    "compat.enchancement.SlideComponentMixin",
     "compat.tconstruct.SimpleChannelAccessor"
   ],
   "client": [
