@@ -3,6 +3,7 @@ package dev.ithundxr.railwaystweaks.commands;
 import com.mojang.brigadier.builder.ArgumentBuilder;
 import com.simibubi.create.Create;
 import com.simibubi.create.content.trains.entity.CarriageContraptionEntity;
+import dev.ithundxr.railwaystweaks.RailwaysTweaks;
 import dev.ithundxr.railwaystweaks.mixin.compat.tconstruct.SimpleChannelAccessor;
 import me.pepperbell.simplenetworking.C2SPacket;
 import me.pepperbell.simplenetworking.S2CPacket;
@@ -28,6 +29,12 @@ public class RailwaysTweaksCommands {
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
             dispatcher.register(literal("railwaystweaks")
                     .then($dump_trains()));
+        });
+
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+            dispatcher.register(literal("avgmspt")
+                    .requires(cs -> cs.hasPermission(2))
+                    .executes(ctx -> avgMSPT(ctx.getSource())));
         });
     }
 
@@ -95,6 +102,11 @@ public class RailwaysTweaksCommands {
 
         source.sendSuccess(() -> Component.literal(s.toString()), true);
 
+        return 0;
+    }
+
+    private static int avgMSPT(CommandSourceStack source) {
+        source.sendSuccess(() -> Component.literal("Average MSPT (10s): " + String.format("%.1f", RailwaysTweaks.MSPT_TRACKER.getAverageMSPT())), true);
         return 0;
     }
 }

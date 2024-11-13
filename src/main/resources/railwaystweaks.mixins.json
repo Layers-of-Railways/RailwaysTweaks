@@ -13,6 +13,7 @@
     "compat.appleskin.SyncHandlerMixin",
     "compat.create.Carriage$DimensionalCarriageEntityMixin",
     "compat.create.CarriageAccessor",
+    "compat.create.SchematicannonBlockEntityMixin",
     "compat.dcintegration.DiscordEventListenerMixin",
     "compat.enchancement.SlideComponentMixin",
     "compat.tconstruct.SimpleChannelAccessor"
