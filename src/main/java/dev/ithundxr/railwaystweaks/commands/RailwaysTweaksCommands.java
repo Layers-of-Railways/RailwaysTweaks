@@ -8,7 +8,9 @@ import dev.ithundxr.railwaystweaks.database.DumpDatabase;
 import dev.ithundxr.railwaystweaks.mixin.compat.tconstruct.SimpleChannelAccessor;
 import me.pepperbell.simplenetworking.C2SPacket;
 import me.pepperbell.simplenetworking.S2CPacket;
+import net.fabricmc.api.EnvType;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.Util;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.network.chat.Component;
@@ -39,15 +41,17 @@ public class RailwaysTweaksCommands {
                     .executes(ctx -> avgMSPT(ctx.getSource())));
         });
 
-        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
-            dispatcher.register(literal("railwaystweaks")
-                    .then(literal("dump_db")
-                            .requires(cs -> cs.hasPermission(4))
-                            .executes(ctx -> {
-                                Util.ioPool().execute(DumpDatabase::dump);
-                                return 0;
-                            })));
-        });
+        if (FabricLoader.getInstance().getEnvironmentType() == EnvType.SERVER) {
+            CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+                dispatcher.register(literal("railwaystweaks")
+                        .then(literal("dump_db")
+                                .requires(cs -> cs.hasPermission(4))
+                                .executes(ctx -> {
+                                    Util.ioPool().execute(DumpDatabase::dump);
+                                    return 0;
+                                })));
+            });
+        }
     }
 
     private static ArgumentBuilder<CommandSourceStack, ?> $dump_hephaestus_packets() {
