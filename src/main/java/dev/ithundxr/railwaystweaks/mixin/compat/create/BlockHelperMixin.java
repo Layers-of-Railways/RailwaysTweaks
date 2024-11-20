@@ -1,6 +1,5 @@
 package dev.ithundxr.railwaystweaks.mixin.compat.create;
 
-import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.simibubi.create.foundation.utility.BlockHelper;
 import net.minecraft.world.level.block.entity.BlockEntity;
