@@ -69,8 +69,6 @@ dependencies {
     }
     
     modCompileOnly("maven.modrinth:enchancement:1.20-26")
-
-    implementation(include("com.mysql:mysql-connector-j:8.0.31")!!)
 }
 
 tasks.processResources {
