@@ -30,7 +30,6 @@ public class MSPTTracker {
         // Calculate the average MSPT every AVERAGE_INTERVAL_TICKS
         if (tickCount >= averageIntervalTicks) {
             averageMSPT = totalMSPT / tickCount;
-            RailwaysTweaks.LOGGER.info("MSPT: " + averageMSPT);
 
             // Reset for the next interval
             totalMSPT = 0;
