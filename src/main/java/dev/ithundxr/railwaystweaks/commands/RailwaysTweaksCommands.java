@@ -4,10 +4,12 @@ import com.mojang.brigadier.builder.ArgumentBuilder;
 import com.simibubi.create.Create;
 import com.simibubi.create.content.trains.entity.CarriageContraptionEntity;
 import dev.ithundxr.railwaystweaks.RailwaysTweaks;
+import dev.ithundxr.railwaystweaks.database.DumpDatabase;
 import dev.ithundxr.railwaystweaks.mixin.compat.tconstruct.SimpleChannelAccessor;
 import me.pepperbell.simplenetworking.C2SPacket;
 import me.pepperbell.simplenetworking.S2CPacket;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.minecraft.Util;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.network.chat.Component;
 import slimeknights.tconstruct.common.network.TinkerNetwork;
@@ -35,6 +37,16 @@ public class RailwaysTweaksCommands {
             dispatcher.register(literal("avgmspt")
                     .requires(cs -> cs.hasPermission(2))
                     .executes(ctx -> avgMSPT(ctx.getSource())));
+        });
+
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+            dispatcher.register(literal("railwaystweaks")
+                    .then(literal("dump_db")
+                            .requires(cs -> cs.hasPermission(4))
+                            .executes(ctx -> {
+                                Util.ioPool().execute(DumpDatabase::dump);
+                                return 0;
+                            })));
         });
     }
 
