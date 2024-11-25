@@ -1,12 +1,14 @@
 package dev.ithundxr.railwaystweaks.commands;
 
 import com.mojang.brigadier.Command;
+import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.ArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import com.simibubi.create.Create;
 import com.simibubi.create.content.trains.entity.CarriageContraptionEntity;
 import dev.ithundxr.railwaystweaks.RailwaysTweaks;
 import dev.ithundxr.railwaystweaks.mixin.compat.tconstruct.SimpleChannelAccessor;
+import dev.ithundxr.railwaystweaks.utils.UUIDFinder;
 import me.pepperbell.simplenetworking.C2SPacket;
 import me.pepperbell.simplenetworking.S2CPacket;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
@@ -41,9 +43,17 @@ public class RailwaysTweaksCommands {
         });
 
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+            dispatcher.register(literal("uuid")
+                    .then(Commands.argument("player_name", StringArgumentType.string())
+                            .executes(RailwaysTweaksCommands::getPlayerUUID)
+                    )
+            );
+        });
+
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
             dispatcher.register(literal("railwaystweaks")
                     .then(
-                        literal("opac-party")
+                            literal("opac-party")
                                 .then(Commands.argument("player_uuid", UuidArgument.uuid())
                                         .executes(RailwaysTweaksCommands::getPlayerPartyName)
                                 )
@@ -132,11 +142,23 @@ public class RailwaysTweaksCommands {
         IServerPartyAPI partyAPI = api.getPartyManager().getPartyByMember(uuid);
 
         if (partyAPI != null) {
-            ctx.getSource().sendSuccess(() -> Component.literal(partyAPI.getDefaultName() + "\n" + partyAPI.getId()), true);
+            ctx.getSource().sendSuccess(() -> Component.literal(partyAPI.getDefaultName() + "\n" + partyAPI.getId()), false);
             return 0;
         } else {
             ctx.getSource().sendFailure(Component.literal("Failed to get a party uuid from this player"));
             return 1;
         }
+    }
+
+    private static int getPlayerUUID(CommandContext<CommandSourceStack> ctx) {
+        String name = StringArgumentType.getString(ctx, "player_name");
+
+        if (name != null) {
+            UUIDFinder.findUuid(name, (uuid) -> {
+                if (uuid != null)
+                    ctx.getSource().sendSuccess(() -> Component.literal(uuid.toString()), false);
+            });
+        }
+        return 0;
     }
 }
