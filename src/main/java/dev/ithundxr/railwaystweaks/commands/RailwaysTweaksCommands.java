@@ -1,6 +1,8 @@
 package dev.ithundxr.railwaystweaks.commands;
 
+import com.mojang.brigadier.Command;
 import com.mojang.brigadier.builder.ArgumentBuilder;
+import com.mojang.brigadier.context.CommandContext;
 import com.simibubi.create.Create;
 import com.simibubi.create.content.trains.entity.CarriageContraptionEntity;
 import dev.ithundxr.railwaystweaks.RailwaysTweaks;
@@ -9,13 +11,14 @@ import me.pepperbell.simplenetworking.C2SPacket;
 import me.pepperbell.simplenetworking.S2CPacket;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.commands.arguments.UuidArgument;
 import net.minecraft.network.chat.Component;
 import slimeknights.tconstruct.common.network.TinkerNetwork;
+import xaero.pac.common.server.api.OpenPACServerAPI;
+import xaero.pac.common.server.parties.party.api.IServerPartyAPI;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static net.minecraft.commands.Commands.literal;
 
@@ -36,6 +39,18 @@ public class RailwaysTweaksCommands {
                     .requires(cs -> cs.hasPermission(2))
                     .executes(ctx -> avgMSPT(ctx.getSource())));
         });
+
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+            dispatcher.register(literal("railwaystweaks")
+                    .then(
+                        literal("opac-party")
+                                .then(Commands.argument("player_uuid", UuidArgument.uuid())
+                                        .executes(RailwaysTweaksCommands::getPlayerPartyName)
+                                )
+                    )
+            );
+        });
+
     }
 
     private static ArgumentBuilder<CommandSourceStack, ?> $dump_hephaestus_packets() {
@@ -108,5 +123,20 @@ public class RailwaysTweaksCommands {
     private static int avgMSPT(CommandSourceStack source) {
         source.sendSuccess(() -> Component.literal("Average MSPT (10s): " + String.format("%.1f", RailwaysTweaks.MSPT_TRACKER.getAverageMSPT())), true);
         return 0;
+    }
+
+    private static int getPlayerPartyName(CommandContext<CommandSourceStack> ctx) {
+        UUID uuid = UuidArgument.getUuid(ctx, "player_uuid");
+
+        OpenPACServerAPI api = OpenPACServerAPI.get(ctx.getSource().getServer());
+        IServerPartyAPI partyAPI = api.getPartyManager().getPartyByMember(uuid);
+
+        if (partyAPI != null) {
+            ctx.getSource().sendSuccess(() -> Component.literal(partyAPI.getDefaultName() + "\n" + partyAPI.getId()), true);
+            return 0;
+        } else {
+            ctx.getSource().sendFailure(Component.literal("Failed to get a party uuid from this player"));
+            return 1;
+        }
     }
 }

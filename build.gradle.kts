@@ -69,6 +69,9 @@ dependencies {
     }
     
     modCompileOnly("maven.modrinth:enchancement:1.20-26")
+
+    // OPAC API
+    modApi("maven.modrinth:open-parties-and-claims:fabric-1.20.1-0.23.2")
 }
 
 tasks.processResources {
