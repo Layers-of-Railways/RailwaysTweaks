@@ -17,6 +17,7 @@
     "compat.create.SchematicannonBlockEntityMixin",
     "compat.dcintegration.DiscordEventListenerMixin",
     "compat.enchancement.SlideComponentMixin",
+    "compat.tconstruct.LazyModifierMixin",
     "compat.tconstruct.SimpleChannelAccessor"
   ],
   "client": [
