@@ -61,20 +61,20 @@ dependencies {
     modCompileOnly("maven.modrinth:appleskin:2.5.1+mc1.20")
     
     // Compat
-    modImplementation("maven.modrinth:banhammer:0.7.1+1.20.1")
-    modImplementation(":ACME_Admin-0.1.0-beta.1+fabric-mc1.20.1-local")
+    modCompileOnly("maven.modrinth:banhammer:0.7.1+1.20.1")
+    modCompileOnly(":ACME_Admin-0.1.0-beta.1+fabric-mc1.20.1-local")
 
-    modImplementation("de.erdbeerbaerlp:dcintegration.common:3.0.7") {
+    modCompileOnly("de.erdbeerbaerlp:dcintegration.common:3.0.7") {
         isChanging = true
         isTransitive = false
     }
     
     modCompileOnly("maven.modrinth:enchancement:1.20-26")
-    
-    modImplementation("tschipp.carryon:carryon-fabric-1.20.1:2.1.2.7") { isTransitive = false }
+
+    modCompileOnly("tschipp.carryon:carryon-fabric-1.20.1:2.1.2.7") { isTransitive = false }
 
     // OPAC API
-    modApi("maven.modrinth:open-parties-and-claims:fabric-1.20.1-0.23.2")
+    modCompileOnly("maven.modrinth:open-parties-and-claims:fabric-1.20.1-0.23.2")
 }
 
 tasks.processResources {
