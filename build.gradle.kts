@@ -24,6 +24,7 @@ repositories {
     exclusiveMaven("https://maven.wispforest.io", "me.alphamode")
     exclusiveMaven("https://maven.terraformersmc.com/releases/", "com.terraformersmc")
     exclusiveMaven("https://repo.erdbeerbaerlp.de/repository/maven-public/", "de.erdbeerbaerlp")
+    exclusiveMaven("https://maven.blamejared.com/", "tschipp.carryon")
     flatDir {
         dirs(setOf("libs"))
     }
@@ -69,6 +70,8 @@ dependencies {
     }
     
     modCompileOnly("maven.modrinth:enchancement:1.20-26")
+    
+    modImplementation("tschipp.carryon:carryon-fabric-1.20.1:2.1.2.7") { isTransitive = false }
 
     // OPAC API
     modApi("maven.modrinth:open-parties-and-claims:fabric-1.20.1-0.23.2")
