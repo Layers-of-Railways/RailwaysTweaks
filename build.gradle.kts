@@ -74,7 +74,11 @@ dependencies {
     modCompileOnly("tschipp.carryon:carryon-fabric-1.20.1:2.1.2.7") { isTransitive = false }
 
     // OPAC API
-    modCompileOnly("maven.modrinth:open-parties-and-claims:fabric-1.20.1-0.23.2")
+    modCompileOnlyApi("maven.modrinth:open-parties-and-claims:fabric-1.20.1-0.23.2")
+
+    // Serene Seasons
+    modCompileOnly("maven.modrinth:serene-seasons:4RgDk9NB")
+    modCompileOnly("maven.modrinth:glitchcore:25HLOiOl")
 }
 
 tasks.processResources {

@@ -15,9 +15,10 @@
     "compat.create.BlockHelperMixin",
     "compat.create.Carriage$DimensionalCarriageEntityMixin",
     "compat.create.CarriageAccessor",
-    "compat.create.SchematicannonBlockEntityMixin",
+    "compat.create.FunnelBlockEntityMixin",
     "compat.dcintegration.DiscordEventListenerMixin",
     "compat.enchancement.SlideComponentMixin",
+    "compat.sereneseasons.RandomUpdateHandlerMixin",
     "compat.tconstruct.LazyModifierMixin",
     "compat.tconstruct.SimpleChannelAccessor"
   ],
