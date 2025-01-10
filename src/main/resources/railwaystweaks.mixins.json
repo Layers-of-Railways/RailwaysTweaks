@@ -15,7 +15,6 @@
     "compat.dcintegration.DiscordEventListenerMixin",
     "compat.dcintegration.FabricMessageUtilsMixin",
     "compat.enchancement.SlideComponentMixin",
-    "compat.sereneseasons.RandomUpdateHandlerMixin",
     "compat.tconstruct.LazyModifierMixin",
     "compat.tconstruct.SimpleChannelAccessor"
   ],
