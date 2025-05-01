@@ -12,7 +12,6 @@
     "ServerStatusPacketListenerImplMixin",
     "compat.appleskin.SyncHandlerMixin",
     "compat.carryon.PlacementHandlerMixin",
-    "compat.create.BasinOperatingBlockEntityMixin",
     "compat.create.TrainMixin",
     "compat.dcintegration.DiscordEventListenerMixin",
     "compat.dcintegration.FabricMessageUtilsMixin",
