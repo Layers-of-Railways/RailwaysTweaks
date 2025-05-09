@@ -7,6 +7,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(BasinBlockEntity.class)
 public class BasinBlockEntityMixin {
@@ -25,6 +26,11 @@ public class BasinBlockEntityMixin {
             )
     )
     private void railwayTweaks$changeRecipeBackupCheckInterval(BasinBlockEntity bbe, int recipeBackupCheck) {
+        this.recipeBackupCheck = railwayTweaks$BACKUP_CHECK_INTERVAL;
+    }
+
+    @Inject(method = "<init>", at = @At("TAIL"))
+    private void railwayTweaks$init(CallbackInfo ci) {
         this.recipeBackupCheck = railwayTweaks$BACKUP_CHECK_INTERVAL;
     }
 }
