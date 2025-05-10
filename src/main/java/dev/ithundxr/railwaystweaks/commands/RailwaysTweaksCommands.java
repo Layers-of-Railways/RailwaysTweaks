@@ -28,7 +28,7 @@ public class RailwaysTweaksCommands {
     public static void init() {
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
             dispatcher.register(literal("railwaystweaks")
-                .then($dump_hephaestus_packets()));
+                    .then($dump_hephaestus_packets()));
         });
 
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
@@ -45,28 +45,23 @@ public class RailwaysTweaksCommands {
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
             dispatcher.register(literal("uuid")
                     .then(Commands.argument("player_name", StringArgumentType.string())
-                            .executes(RailwaysTweaksCommands::getPlayerUUID)
-                    )
-            );
+                            .executes(RailwaysTweaksCommands::getPlayerUUID)));
         });
 
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
             dispatcher.register(literal("railwaystweaks")
                     .then(
                             literal("opac-party")
-                                .then(Commands.argument("player_uuid", UuidArgument.uuid())
-                                        .executes(RailwaysTweaksCommands::getPlayerPartyName)
-                                )
-                    )
-            );
+                                    .then(Commands.argument("player_uuid", UuidArgument.uuid())
+                                            .executes(RailwaysTweaksCommands::getPlayerPartyName))));
         });
 
     }
 
     private static ArgumentBuilder<CommandSourceStack, ?> $dump_hephaestus_packets() {
         return literal("dump_hephaestus_packets")
-            .requires(cs -> cs.hasPermission(2))
-            .executes(ctx -> dumpHephaestusPackets(ctx.getSource()));
+                .requires(cs -> cs.hasPermission(2))
+                .executes(ctx -> dumpHephaestusPackets(ctx.getSource()));
     }
 
     private static ArgumentBuilder<CommandSourceStack, ?> $dump_trains() {
@@ -114,14 +109,8 @@ public class RailwaysTweaksCommands {
         StringBuilder s = new StringBuilder();
 
         Create.RAILWAYS.trains.forEach((uuid, train) -> {
-            s.append("Train Name: ").append(train.name.toString());
-
-            CarriageContraptionEntity entity = train.carriages.get(0).anyAvailableEntity();
-
-            if (entity != null) {
-                s.append(", is at ").append(entity.position());
-            }
-
+            s.append("Train Name: ").append(train.name.getString());
+            s.append(", Position: ").append(train.carriages.get(0).getLeadingPoint().getPosition(train.graph));
             s.append("\n");
         });
 
@@ -131,7 +120,10 @@ public class RailwaysTweaksCommands {
     }
 
     private static int avgMSPT(CommandSourceStack source) {
-        source.sendSuccess(() -> Component.literal("Average MSPT (10s): " + String.format("%.1f", RailwaysTweaks.MSPT_TRACKER.getAverageMSPT())), true);
+        source.sendSuccess(
+                () -> Component.literal(
+                        "Average MSPT (10s): " + String.format("%.1f", RailwaysTweaks.MSPT_TRACKER.getAverageMSPT())),
+                true);
         return 0;
     }
 
@@ -142,7 +134,8 @@ public class RailwaysTweaksCommands {
         IServerPartyAPI partyAPI = api.getPartyManager().getPartyByMember(uuid);
 
         if (partyAPI != null) {
-            ctx.getSource().sendSuccess(() -> Component.literal(partyAPI.getDefaultName() + "\n" + partyAPI.getId()), false);
+            ctx.getSource().sendSuccess(() -> Component.literal(partyAPI.getDefaultName() + "\n" + partyAPI.getId()),
+                    false);
             return 0;
         } else {
             ctx.getSource().sendFailure(Component.literal("Failed to get a party uuid from this player"));
