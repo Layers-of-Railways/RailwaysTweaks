@@ -11,7 +11,6 @@
     "ServerPlayerMixin",
     "ServerStatusPacketListenerImplMixin",
     "compat.appleskin.SyncHandlerMixin",
-    "compat.armourers_workshop.SkinnableBlockEntityMixin",
     "compat.carryon.PlacementHandlerMixin",
     "compat.create.BasinBlockEntityMixin",
     "compat.create.TrainMixin",

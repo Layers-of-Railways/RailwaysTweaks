@@ -72,8 +72,6 @@ dependencies {
     
     modCompileOnly("maven.modrinth:enchancement:1.20-26")
 
-    modCompileOnly("maven.modrinth:armourers-workshop:fabric-1.20.1-3.2.0-beta")
-
     modCompileOnly("tschipp.carryon:carryon-fabric-1.20.1:2.1.2.7") { isTransitive = false }
 
     // OPAC API
