@@ -25,7 +25,9 @@
     "client.PlayerRendererMixin",
     "client.compat.copycatsplus.MultiStateCopycatModelMixin",
     "client.compat.create.BasinBlockEntityMixin",
-    "client.compat.create.ContraptionRenderingWorldMixin"
+    "client.compat.create.ContraptionRenderingWorldMixin",
+    "client.compat.porting_lib.PortingLibModelsMixin",
+    "client.compat.porting_lib.PortingLibObjLoaderMixin"
   ],
   "injectors": {
     "defaultRequire": 1
