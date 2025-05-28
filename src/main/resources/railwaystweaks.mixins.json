@@ -24,6 +24,7 @@
     "client.HttpTextureMixin",
     "client.PlayerRendererMixin",
     "client.compat.copycatsplus.MultiStateCopycatModelMixin",
+    "client.compat.create.BasinBlockEntityMixin",
     "client.compat.create.ContraptionRenderingWorldMixin"
   ],
   "injectors": {
