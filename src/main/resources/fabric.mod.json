@@ -5,11 +5,14 @@
   "name": "RailwaysTweaks",
   "description": "Tweaks for the Steam 'n' Rails Modpack",
   "authors": [
-    "IThundxr"
+    "IThundxr",
+    "Slimeist",
+    "Evelyn"
   ],
   "contact": {
     "website": "https://ithundxr.dev",
-    "repo": "https://github.com/ithundxr/RailwaysTweaks/issues"
+    "sources": "https://github.com/Layers-of-Railways/RailwaysTweaks/",
+    "issues": "https://github.com/Layers-of-Railways/RailwaysTweaks/issues/"
   },
   "license": "LGPL-3.0",
   "icon": "assets/railwaystweaks/icon.png",
