@@ -19,8 +19,8 @@ import java.util.function.Predicate;
 @Mixin(ScaledBlockAndTintGetter.class)
 @SuppressWarnings("UnstableApiUsage")
 public class ScaledBlockAndTintGetterMixin {
-    @Shadow(remap = false) @Final protected Predicate<BlockPos> filter;
-    @Shadow(remap = false) @Final protected BlockAndTintGetter wrapped;
+    @Shadow @Final protected Predicate<BlockPos> filter;
+    @Shadow @Final protected BlockAndTintGetter wrapped;
 
     @Unique
     private int railwaysTweaks$origin$x;
@@ -43,7 +43,7 @@ public class ScaledBlockAndTintGetterMixin {
     @Unique
     private int railwaysTweaks$originShift$z;
 
-    @Inject(method = "<init>", at = @At("RETURN"), remap = false)
+    @Inject(method = "<init>", at = @At("RETURN"))
     private void initInts(String renderingProperty, BlockAndTintGetter wrapped, BlockPos origin, Vec3i originInner, Vec3i scale, Predicate<BlockPos> filter, CallbackInfo ci) {
         railwaysTweaks$origin$x = origin.getX();
         railwaysTweaks$origin$y = origin.getY();
@@ -62,7 +62,7 @@ public class ScaledBlockAndTintGetterMixin {
      * @author Slimeist
      * @reason Violent optimizations
      */
-    @Overwrite(remap = false)
+    @Overwrite
     public BlockPos getTruePos(BlockPos pos) {
         // the original calculation was:
         // int x = t.o.x + (int) Math.floor(
@@ -85,7 +85,7 @@ public class ScaledBlockAndTintGetterMixin {
      * @author Slimeist
      * @reason Violent optimizations
      */
-    @Overwrite(remap = false)
+    @Overwrite
     public @NotNull BlockState getBlockState(@NotNull BlockPos pPos) {
         long key = pPos.asLong();
         return railwaysTweaks$blockStateCache.computeIfAbsent(key, $ -> {
