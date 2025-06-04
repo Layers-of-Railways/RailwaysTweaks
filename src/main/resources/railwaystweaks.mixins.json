@@ -25,7 +25,8 @@
   "client": [
     "client.HttpTextureMixin",
     "client.PlayerRendererMixin",
-    "client.compat.copycatsplus.MultiStateCopycatModelMixin",
+    "client.compat.copycatsplus.BlockFaceUtilsMixin",
+    "client.compat.copycatsplus.ScaledBlockAndTintGetterMixin",
     "client.compat.create.BasinBlockEntityMixin",
     "client.compat.create.ContraptionRenderingWorldMixin",
     "client.compat.porting_lib.PortingLibModelsMixin",

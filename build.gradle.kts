@@ -57,9 +57,12 @@ dependencies {
     modCompileOnly("dev.ithundxr.createnumismatics:CreateNumismatics-fabric-1.20.1:1.0.6+fabric-mc1.20.1")
 
     // Workarounds
-    modCompileOnly("maven.modrinth:copycats:fabric.1.20.1-1.3.2")
+    if ("enable_copycats_plus"().toBoolean()) {
+        modRuntimeOnly("maven.modrinth:copycats:2.2.2+mc.1.20.1-fabric")
+    }
+    modCompileOnly("maven.modrinth:copycats:2.2.2+mc.1.20.1-fabric")
     modCompileOnly("maven.modrinth:appleskin:2.5.1+mc1.20")
-    
+
     // Compat
     modImplementation("maven.modrinth:banhammer:0.7.1+1.20.1")
     modImplementation(":ACME_Admin-0.1.0-beta.1+fabric-mc1.20.1-local")
