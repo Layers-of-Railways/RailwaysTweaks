@@ -6,13 +6,11 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "DedicatedServerMixin",
-    "LevelChunkSectionMixin",
     "MinecraftServerMixin",
     "ServerPlayerMixin",
     "ServerStatusPacketListenerImplMixin",
     "atomicsavedata.DimensionDataStorageMixin",
     "atomicsavedata.NbtIoMixin",
-    "atomicsavedata.SavedDataMixin",
     "atomicsavedata.ServerLevelMixin",
     "atomicsavedata.WorldUpgraderMixin",
     "compat.appleskin.SyncHandlerMixin",

@@ -16,7 +16,7 @@ repositories {
     maven("https://raw.githubusercontent.com/Fuzss/modresources/main/maven/") // Forge Config API Port
     maven("https://maven.jamieswhiteshirt.com/libs-release") // Reach Entity Attributes
     maven("https://jitpack.io/") // Fabric ASM
-    maven("https://maven.tterrag.com/") // Flywheel
+    maven("https://modmaven.dev/") // Flywheel
     maven("https://api.modrinth.com/maven")
     maven("https://maven.ithundxr.dev/releases")
     maven("https://maven.shedaniel.me/") // Mantle deps
