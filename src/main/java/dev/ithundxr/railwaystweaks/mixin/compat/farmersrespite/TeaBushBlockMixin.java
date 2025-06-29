@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import static com.chefsdelights.farmersrespite.common.block.TeaBushBlock.AGE;
+import static dev.ithundxr.railwaystweaks.RailwaysTweaks.LOGGER;
 
 @Mixin(TeaBushBlock.class)
 public class TeaBushBlockMixin {
@@ -21,6 +22,6 @@ public class TeaBushBlockMixin {
     )
     private void stopGrowthAcceleratorCrash(ServerLevel serverLevel, RandomSource randomSource, BlockPos blockPos, BlockState blockState, CallbackInfo ci) {
         int i = blockState.getValue(AGE);
-        if (i > 3) ci.cancel();
+        if (i > 2) ci.cancel();
     }
 }
