@@ -17,7 +17,6 @@ public class TeaBushBlockMixin {
     @Inject(
             method = "performBonemeal",
             at = @At("HEAD"),
-            remap = false,
             cancellable = true
     )
     private void stopGrowthAcceleratorCrash(ServerLevel serverLevel, RandomSource randomSource, BlockPos blockPos, BlockState blockState, CallbackInfo ci) {

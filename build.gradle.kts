@@ -25,7 +25,7 @@ repositories {
     exclusiveMaven("https://maven.terraformersmc.com/releases/", "com.terraformersmc")
     exclusiveMaven("https://repo.erdbeerbaerlp.de/repository/maven-public/", "de.erdbeerbaerlp")
     exclusiveMaven("https://maven.blamejared.com/", "tschipp.carryon")
-    exclusiveMaven("https://cursemaven.com", "curse.maven")
+    exclusiveMaven("https://cursemaven.com/", "curse.maven")
     flatDir {
         dirs(setOf("libs"))
     }
@@ -82,7 +82,7 @@ dependencies {
     modCompileOnlyApi("maven.modrinth:open-parties-and-claims:fabric-1.20.1-0.23.2")
 
     // Farmers Respite
-    modCompileOnly("curse.maven:farmersrespite-811003:5252387")
+    modCompileOnly("curse.maven:farmers-respite-fabric-811003:5252387")
 }
 
 tasks.processResources {
