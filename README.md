@@ -3,6 +3,6 @@
 A mod made to assist in the Steam 'n' Rails modpack by fixing bugs, lag from unneeded things and small tweaks or game additions.
 
 ## License
-Railways Tweaks is licensed under the LGPL-3.0 license. See [LICENSE](LICENSE) for more information.
+Railways Tweaks is licensed under the AGPL license. See [LICENSE](LICENSE) for more information.
 
-Code for IOUtilities is from NeoForge, which is licensed under LGPL-2.1-only. See [NeoForge's License](https://github.com/neoforged/NeoForge/blob/1.21.x/LICENSE.txt)
+Code for LevelChunkSectionMixin is from FireBlanket, which is licensed under AGPL. See [FireBlanket's License](https://github.com/ModFest/fireblanket/blob/b1180ea2cee7153aeb3f408bda946e1a52162ef7/LICENSE.AGPL.md)
