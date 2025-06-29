@@ -18,6 +18,7 @@
     "compat.dcintegration.DiscordEventListenerMixin",
     "compat.dcintegration.FabricMessageUtilsMixin",
     "compat.enchancement.SlideComponentMixin",
+    "compat.farmersrespite.TeaBushBlockMixin",
     "compat.tconstruct.LazyModifierMixin",
     "compat.tconstruct.SimpleChannelAccessor"
   ],
