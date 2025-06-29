@@ -10,6 +10,7 @@
     "ServerPlayerMixin",
     "ServerStatusPacketListenerImplMixin",
     "atomicsavedata.DimensionDataStorageMixin",
+    "atomicsavedata.NbtIoMixin",
     "atomicsavedata.ServerLevelMixin",
     "atomicsavedata.WorldUpgraderMixin",
     "compat.appleskin.SyncHandlerMixin",
