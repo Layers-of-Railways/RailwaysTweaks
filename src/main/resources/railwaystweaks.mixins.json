@@ -6,7 +6,7 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "DedicatedServerMixin",
-    "compat.create.saveddata.DimensionDataStorageMixin",
+    "DimensionDataStorageMixin",
     "MinecraftServerMixin",
     "ServerPlayerMixin",
     "ServerStatusPacketListenerImplMixin",
@@ -15,8 +15,7 @@
     "compat.create.AbstractBogeyBlockEntityMixin",
     "compat.create.BasinBlockEntityMixin",
     "compat.create.CarriageBogeyMixin",
-    "compat.create.saveddata.RailwaySavedDataMixin",
-    "compat.create.saveddata.SavedDataMixin",
+    "compat.create.SavedDataMixin",
     "compat.create.TrainMixin",
     "compat.dcintegration.DiscordEventListenerMixin",
     "compat.dcintegration.FabricMessageUtilsMixin",
