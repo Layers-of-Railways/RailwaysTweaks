@@ -18,7 +18,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.function.Function;
 
-@Mixin(value = DimensionDataStorage.class, priority = 2000)
+@Mixin(DimensionDataStorage.class)
 public abstract class DimensionDataStorageMixin {
 	@Shadow
 	@Final
