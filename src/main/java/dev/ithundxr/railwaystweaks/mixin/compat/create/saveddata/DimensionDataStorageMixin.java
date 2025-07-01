@@ -49,8 +49,6 @@ public abstract class DimensionDataStorageMixin {
 	
 	@WrapOperation(method = "readTagFromDisk", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/storage/DimensionDataStorage;getDataFile(Ljava/lang/String;)Ljava/io/File;"))
 	private File railwaysTweaks$fixGetDataFile(DimensionDataStorage instance, String name, Operation<File> original) {
-		RailwaysTweaks.LOGGER.info("Reading {} saved data from disk", name);
-		
 		boolean old = name.endsWith("_old");
 		if (old) RailwaysTweaks.LOGGER.info("Reading .dat_old file for {}", name);
 		return old ? new File(this.dataFolder, name) : original.call(instance, name);
