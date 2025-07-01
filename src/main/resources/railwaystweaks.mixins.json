@@ -14,6 +14,7 @@
     "compat.create.AbstractBogeyBlockEntityMixin",
     "compat.create.BasinBlockEntityMixin",
     "compat.create.CarriageBogeyMixin",
+    "compat.create.ScheduleRuntimeMixin",
     "compat.create.TrainMixin",
     "compat.dcintegration.DiscordEventListenerMixin",
     "compat.dcintegration.FabricMessageUtilsMixin",
