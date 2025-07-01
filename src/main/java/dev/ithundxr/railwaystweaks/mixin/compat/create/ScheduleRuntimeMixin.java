@@ -14,7 +14,7 @@ import java.util.List;
 public class ScheduleRuntimeMixin {
 	@Shadow List<CompoundTag> conditionContext;
 
-	@Inject(method = "destinationReached", at = @At(value = "INVOKE", target = "Ljava/util/List;clear()V"))
+	@Inject(method = "destinationReached", at = @At(value = "INVOKE", target = "Ljava/util/List;clear()V"), remap = false)
 	private void railwaysTweaks$clearConditionContext(CallbackInfo ci) {
 		conditionContext.clear();
 	}
