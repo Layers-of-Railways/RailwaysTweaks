@@ -1,8 +1,9 @@
-package dev.ithundxr.railwaystweaks.mixin.compat.create;
+package dev.ithundxr.railwaystweaks.mixin.compat.create.saveddata;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.simibubi.create.content.trains.RailwaySavedData;
+import dev.ithundxr.railwaystweaks.RailwaysTweaks;
 import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtIo;
@@ -20,11 +21,15 @@ public class SavedDataMixin {
 	@WrapOperation(method = "save(Ljava/io/File;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/nbt/NbtIo;writeCompressed(Lnet/minecraft/nbt/CompoundTag;Ljava/io/File;)V"))
 	private void railwaysTweaks$createDatOld(CompoundTag compoundTag, File file, Operation<Void> original) throws IOException {
 		if ((Object) this instanceof RailwaySavedData) {
+			RailwaysTweaks.LOGGER.info("Saving track data with .dat_old support");
+			
 			String savedDataName = file.getName().split("\\.")[0];
 			File temp = File.createTempFile(savedDataName, ".dat", file.getParentFile());
 			NbtIo.writeCompressed(compoundTag, temp);
 			File oldFile = Paths.get(file.getParent(), savedDataName + ".dat_old").toFile();
 			Util.safeReplaceFile(file, temp, oldFile);
+
+			RailwaysTweaks.LOGGER.info("Saved track data with .dat_old support");
 		} else {
 			original.call(compoundTag, file);
 		}

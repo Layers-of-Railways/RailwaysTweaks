@@ -1,4 +1,4 @@
-package dev.ithundxr.railwaystweaks.mixin;
+package dev.ithundxr.railwaystweaks.mixin.compat.create.saveddata;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
@@ -49,6 +49,7 @@ public abstract class DimensionDataStorageMixin {
 	
 	@WrapOperation(method = "readTagFromDisk", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/storage/DimensionDataStorage;getDataFile(Ljava/lang/String;)Ljava/io/File;"))
 	private File railwaysTweaks$fixGetDataFile(DimensionDataStorage instance, String name, Operation<File> original) {
+		RailwaysTweaks.LOGGER.info("Reading .dat_old file for {}", name);
 		return name.endsWith("_old") ? new File(this.dataFolder, name) : original.call(instance, name);
 	}
 }
