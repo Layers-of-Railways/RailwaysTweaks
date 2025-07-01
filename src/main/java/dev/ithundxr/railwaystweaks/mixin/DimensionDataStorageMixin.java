@@ -2,7 +2,7 @@ package dev.ithundxr.railwaystweaks.mixin;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import dev.ithundxr.railwaystweaks.RailwaysTweaks;
+import com.simibubi.create.Create;
 import net.minecraft.SharedConstants;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.saveddata.SavedData;
@@ -28,10 +28,10 @@ public abstract class DimensionDataStorageMixin {
 	public abstract CompoundTag readTagFromDisk(String pName, int pLevelVersion) throws IOException;
 
 	@Inject(method = "readSavedData", at = @At(value = "INVOKE", target = "Lorg/slf4j/Logger;error(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V"), cancellable = true)
-	private <T extends SavedData> void railwaysTweaks$tryLoadingFromDatOldIfFailedToLoad(Function<CompoundTag, T> loadFunction, String name, CallbackInfoReturnable<T> cir) {
+	private <T extends SavedData> void create$tryLoadingFromDatOldIfFailedToLoad(Function<CompoundTag, T> loadFunction, String name, CallbackInfoReturnable<T> cir) {
 		// Try loading old data if it's create's SavedData
 		if (name.startsWith("create_")) {
-			RailwaysTweaks.LOGGER.info("Trying to restore {} from .dat_old", name);
+			Create.LOGGER.info("Trying to restore {} from .zat_old", name);
 			try {
 				String path = name + ".dat_old";
 				File oldFile = new File(dataFolder, path);
@@ -39,16 +39,16 @@ public abstract class DimensionDataStorageMixin {
 					CompoundTag compoundtag = readTagFromDisk(path, SharedConstants.getCurrentVersion().getDataVersion().getVersion());
 					T data = loadFunction.apply(compoundtag.getCompound("data"));
 					cir.setReturnValue(data);
-					RailwaysTweaks.LOGGER.info("Successfully restored track data from {}", path);
+					Create.LOGGER.info("Successfully restored track data from {}", path);
 				}
 			} catch (Exception exception) {
-				RailwaysTweaks.LOGGER.error("Error restoring from old saved data: {}", name, exception);
+				Create.LOGGER.error("Error restoring from old saved data: {}", name, exception);
 			}
 		}
 	}
 	
 	@WrapOperation(method = "readTagFromDisk", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/storage/DimensionDataStorage;getDataFile(Ljava/lang/String;)Ljava/io/File;"))
-	private File railwaysTweaks$fixGetDataFile(DimensionDataStorage instance, String name, Operation<File> original) {
+	private File create$fixGetDataFile(DimensionDataStorage instance, String name, Operation<File> original) {
 		return name.endsWith("_old") ? new File(this.dataFolder, name) : original.call(instance, name);
 	}
 }
