@@ -13,6 +13,7 @@
     "compat.carryon.PlacementHandlerMixin",
     "compat.create.AbstractBogeyBlockEntityMixin",
     "compat.create.BasinBlockEntityMixin",
+    "compat.create.BasinRecipeMixin",
     "compat.create.CarriageBogeyMixin",
     "compat.create.ScheduleRuntimeMixin",
     "compat.create.TrainMixin",
