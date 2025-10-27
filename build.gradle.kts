@@ -99,6 +99,9 @@ tasks.processResources {
     filesMatching("fabric.mod.json") {
         expand(properties)
     }
+
+    // don't add development or to-do files into built jar
+    exclude("**/*.bbmodel", "**/*.lnk", "**/*.xcf", "**/*.md", "**/*.txt", "**/*.blend", "**/*.blend1")
 }
 
 val targetJavaVersion = 17
@@ -119,7 +122,7 @@ java {
 
 tasks.jar {
     from("LICENSE") {
-        rename { "${it}_${base.archivesName}"}
+        rename { "${it}_${base.archivesName.get()}"}
     }
 }
 
