@@ -21,7 +21,7 @@ public class TrainMixin {
             constant = @Constant(intValue = 100)
     )
     private int increaseFullRefreshDistance(int original) {
-        return 300; // Reduce navigation calls by increasing the distance before a new calculation is made
+        return 200; // Reduce navigation calls by increasing the distance before a new calculation is made
     }
 
     @Redirect(
