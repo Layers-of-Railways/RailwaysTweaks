@@ -22,7 +22,6 @@
     "compat.dcintegration.FabricMessageUtilsMixin",
     "compat.enchancement.SlideComponentMixin",
     "compat.farmersrespite.TeaBushBlockMixin",
-    "compat.spelunkery.PortalFluidBottleItemMixin",
     "compat.tconstruct.LazyModifierMixin",
     "compat.tconstruct.SimpleChannelAccessor"
   ],
