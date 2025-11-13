@@ -11,7 +11,7 @@ import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-@Mixin(value = Train.class, priority = 1000000, remap = false)
+@Mixin(value = Train.class, priority = 1000000)
 public abstract class TrainMixin {
 
     @WrapOperation(
@@ -27,7 +27,8 @@ public abstract class TrainMixin {
 
     @ModifyExpressionValue(
             method = "updateNavigationTarget",
-            at = @At(value = "CONSTANT", args = "intValue=100")
+            at = @At(value = "CONSTANT", args = "intValue=100"),
+            remap = false
     )
     private int increaseFullRefreshDistance(int original) {
         // Reduce navigation calls by increasing the distance before a new full calculation is made
