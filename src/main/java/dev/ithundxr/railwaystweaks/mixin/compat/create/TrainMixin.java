@@ -24,14 +24,4 @@ public abstract class TrainMixin {
     private Pair<Train, Vec3> railwayTweaks$removeTrainCollisions(Train instance, Level otherLeading, Vec3 otherTrailing, Vec3 otherDimension, ResourceKey<Level> start2, Operation<Pair<Train, Vec3>> original) {
         return null;
     }
-
-    @ModifyExpressionValue(
-            method = "updateNavigationTarget",
-            at = @At(value = "CONSTANT", args = "intValue=100"),
-            remap = false
-    )
-    private int increaseFullRefreshDistance(int original) {
-        // Reduce navigation calls by increasing the distance before a new full calculation is made
-        return 200;
-    }
 }
