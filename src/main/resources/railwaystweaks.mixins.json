@@ -18,6 +18,7 @@
     "compat.create.BasinRecipeMixin",
     "compat.create.CarriageBogeyMixin",
     "compat.create.ScheduleRuntimeMixin",
+    "compat.create.TrackBlockMixin",
     "compat.create.TrainMixin",
     "compat.dcintegration.DiscordEventListenerMixin",
     "compat.dcintegration.FabricMessageUtilsMixin",
