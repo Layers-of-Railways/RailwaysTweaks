@@ -36,7 +36,7 @@
     "client.compat.porting_lib.PortingLibObjLoaderMixin"
   ],
   "server": [
-    "compat.create.TrackBlockMixin"
+    "server.compat.create.TrackBlockMixin"
   ],
   "injectors": {
     "defaultRequire": 1
