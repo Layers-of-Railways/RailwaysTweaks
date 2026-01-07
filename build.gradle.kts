@@ -83,6 +83,9 @@ dependencies {
 
     // Farmers Respite
     modCompileOnly("curse.maven:farmers-respite-fabric-811003:5252387")
+
+    // GriefLogger
+    modCompileOnly("maven.modrinth:grieflogger:1.2.4-1.20.1-fabric")
 }
 
 tasks.processResources {
