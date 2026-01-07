@@ -1,4 +1,4 @@
-package dev.ithundxr.railwaystweaks.mixin.compat.create;
+package dev.ithundxr.railwaystweaks.mixin.server.compat.create;
 
 import com.daqem.grieflogger.event.block.LogBlockEvent;
 import com.daqem.grieflogger.model.action.BlockAction;
