@@ -1,7 +1,7 @@
 package dev.ithundxr.railwaystweaks.mixin.client.compat.create;
 
-import com.jozufozu.flywheel.core.virtual.VirtualRenderWorld;
 import com.simibubi.create.content.processing.basin.BasinBlockEntity;
+import com.simibubi.create.foundation.virtualWorld.VirtualRenderWorld;
 import io.github.fabricators_of_create.porting_lib.util.StorageProvider;
 import it.unimi.dsi.fastutil.Pair;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;

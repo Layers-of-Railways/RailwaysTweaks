@@ -1,7 +1,7 @@
 package dev.ithundxr.railwaystweaks.mixin.compat.create;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
-import com.simibubi.create.content.redstone.displayLink.source.DisplaySource;
+import com.simibubi.create.api.behaviour.display.DisplaySource;
 import com.simibubi.create.content.redstone.displayLink.source.StationSummaryDisplaySource;
 import com.simibubi.create.content.trains.display.FlapDisplaySection;
 import org.spongepowered.asm.mixin.Mixin;
@@ -13,7 +13,6 @@ import static com.simibubi.create.content.trains.display.FlapDisplaySection.MONO
 
 @Mixin(value = StationSummaryDisplaySource.class, remap = false)
 public abstract class StationSummaryDisplaySourceMixin extends DisplaySource {
-
     @ModifyExpressionValue(
             method = "lambda$provideFlapDisplayText$0(ZLjava/util/List;Ljava/lang/String;Lcom/simibubi/create/content/trains/display/GlobalTrainDisplayData$TrainDeparturePrediction;)V",
             at = @At(
@@ -48,5 +47,4 @@ public abstract class StationSummaryDisplaySourceMixin extends DisplaySource {
     private float decreaseAvailableSpaceForOtherSections(float totalSize) {
         return totalSize - MONOSPACE; // subtract the amount added above
     }
-
 }

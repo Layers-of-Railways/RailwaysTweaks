@@ -13,9 +13,6 @@ import slimeknights.tconstruct.library.modifiers.util.LazyModifier;
 
 @Mixin(LazyModifier.class)
 public class LazyModifierMixin {
-
-    @Shadow @Final protected ModifierId id;
-
     @Inject(
             method = "get()Lslimeknights/tconstruct/library/modifiers/Modifier;",
             at = @At("HEAD"),

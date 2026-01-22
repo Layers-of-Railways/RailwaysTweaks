@@ -13,6 +13,7 @@ repositories {
     maven("https://maven.parchmentmc.org") // Parchment mappings
     maven("https://mvn.devos.one/snapshots/") // Create, Porting Lib, Forge Tags, Milk Lib, Registrate
     maven("https://mvn.devos.one/releases/") // Porting Lib Releases
+    maven("https://maven.createmod.net/") // Ponder
     maven("https://raw.githubusercontent.com/Fuzss/modresources/main/maven/") // Forge Config API Port
     maven("https://maven.jamieswhiteshirt.com/libs-release") // Reach Entity Attributes
     maven("https://jitpack.io/") // Fabric ASM
@@ -46,21 +47,18 @@ dependencies {
     // Hep
     modImplementation("maven.modrinth:hephaestus:${"minecraft_version"()}-${"hephaestus_version"()}")
     modImplementation("slimeknights.mantle:Mantle:${"minecraft_version"()}-${"mantle_version"()}")
-    for (pl_module in "accessors,attributes,base,brewing,client_events,core,common,config,data,entity,extensions,items,models,model_loader,networking,tags,tool_actions,transfer,fluids,lazy_registration,loot,utility".split(",")) {
-        modRuntimeOnly("io.github.fabricators_of_create.Porting-Lib:${pl_module}:2.3.4+1.20.1")
+    for (plModule in "pl_modules"().split(",")) {
+        modRuntimeOnly("io.github.fabricators_of_create.Porting-Lib:${plModule}:${"pl_version"()}")
     }
 
     // Create
-    modImplementation("com.simibubi.create:create-fabric-${"minecraft_version"()}:${"create_version"()}")
+    modImplementation("com.simibubi.create:create-fabric:${"create_version"()}")
 
     // SNR & Numi
-    modCompileOnly("com.railwayteam.railways:Steam_Rails-fabric-1.20.1:1.6.4+fabric-mc1.20.1")
-    modCompileOnly("dev.ithundxr.createnumismatics:CreateNumismatics-fabric-1.20.1:1.0.6+fabric-mc1.20.1")
+    modCompileOnly("com.railwayteam.railways:Steam_Rails-fabric-${"minecraft_version"()}:${"snr_version"()}")
+    //modCompileOnly("dev.ithundxr.createnumismatics:CreateNumismatics-fabric-${"minecraft_version"()}:${"numismatics_version"()}")
 
     // Workarounds
-    if ("enable_copycats_plus"().toBoolean()) {
-        modRuntimeOnly("maven.modrinth:copycats:2.2.2+mc.1.20.1-fabric")
-    }
     modCompileOnly("maven.modrinth:copycats:2.2.2+mc.1.20.1-fabric")
     modCompileOnly("maven.modrinth:appleskin:2.5.1+mc1.20")
 
