@@ -3,6 +3,7 @@ package dev.ithundxr.railwaystweaks.mixin.server.compat.create;
 import com.daqem.grieflogger.event.block.LogBlockEvent;
 import com.daqem.grieflogger.model.action.BlockAction;
 import com.daqem.grieflogger.player.GriefLoggerServerPlayer;
+import com.simibubi.create.content.decoration.copycat.CopycatBlock;
 import com.simibubi.create.content.trains.track.TrackBlock;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.context.UseOnContext;
@@ -12,8 +13,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(TrackBlock.class)
-public class TrackBlockMixin {
+@Mixin(CopycatBlock.class)
+public class CopycatBlockMixin {
 
     @Inject(method = "onSneakWrenched", at = @At("HEAD"), cancellable = true)
     private void disableSneakWrench(BlockState state, UseOnContext ctx, CallbackInfoReturnable<InteractionResult> cir) {
