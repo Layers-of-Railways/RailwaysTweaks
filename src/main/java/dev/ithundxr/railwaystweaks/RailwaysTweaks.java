@@ -6,8 +6,10 @@ import dev.ithundxr.railwaystweaks.utils.MSPTTracker;
 import dev.ithundxr.railwaystweaks.utils.UnfillableItemsCache;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.PackType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,7 +28,6 @@ public class RailwaysTweaks implements ModInitializer {
         RailwaysTweaksCommands.init();
 
         var resourceManager = ResourceManagerHelper.get(PackType.SERVER_DATA);
-        resourceManager.registerReloadListener(RecipeTrieFinder.LISTENER);
         resourceManager.registerReloadListener(UnfillableItemsCache.LISTENER);
 
         if (FabricLoader.getInstance().getEnvironmentType() == EnvType.SERVER)
