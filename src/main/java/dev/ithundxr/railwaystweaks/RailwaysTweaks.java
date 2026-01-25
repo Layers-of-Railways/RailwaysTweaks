@@ -3,6 +3,7 @@ package dev.ithundxr.railwaystweaks;
 import dev.ithundxr.railwaystweaks.commands.RailwaysTweaksCommands;
 import dev.ithundxr.railwaystweaks.compat.BanModCompat;
 import dev.ithundxr.railwaystweaks.utils.MSPTTracker;
+import dev.ithundxr.railwaystweaks.utils.UnfillableItemsCache;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
@@ -23,6 +24,10 @@ public class RailwaysTweaks implements ModInitializer {
         LOGGER.info("Railways Tweaks is loading...");
 
         RailwaysTweaksCommands.init();
+
+        var resourceManager = ResourceManagerHelper.get(PackType.SERVER_DATA);
+        resourceManager.registerReloadListener(RecipeTrieFinder.LISTENER);
+        resourceManager.registerReloadListener(UnfillableItemsCache.LISTENER);
 
         if (FabricLoader.getInstance().getEnvironmentType() == EnvType.SERVER)
             BanModCompat.init();
