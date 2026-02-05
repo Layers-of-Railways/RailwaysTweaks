@@ -25,7 +25,8 @@
     "compat.enchancement.SlideComponentMixin",
     "compat.farmersrespite.TeaBushBlockMixin",
     "compat.tconstruct.LazyModifierMixin",
-    "compat.tconstruct.SimpleChannelAccessor"
+    "compat.tconstruct.SimpleChannelAccessor",
+    "compat.create.SpoutBlockEntityMixin"
   ],
   "client": [
     "client.HttpTextureMixin",
@@ -37,7 +38,6 @@
     "client.compat.porting_lib.PortingLibObjLoaderMixin"
   ],
   "server": [
-    "server.compat.create.SpoutBlockEntityMixin",
     "server.compat.create.TrackBlockMixin",
     "server.compat.create.CopycatBlockMixin"
   ],

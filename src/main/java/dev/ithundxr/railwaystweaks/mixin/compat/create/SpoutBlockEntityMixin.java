@@ -1,4 +1,4 @@
-package dev.ithundxr.railwaystweaks.mixin.server.compat.create;
+package dev.ithundxr.railwaystweaks.mixin.compat.create;
 
 import com.simibubi.create.content.fluids.spout.FillingBySpout;
 import com.simibubi.create.content.fluids.spout.SpoutBlockEntity;
@@ -8,6 +8,7 @@ import com.simibubi.create.content.kinetics.belt.transport.TransportedItemStack;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.fluid.SmartFluidTankBehaviour;
 import dev.ithundxr.railwaystweaks.utils.UnfillableItemsCache;
+import io.github.fabricators_of_create.porting_lib.fluids.FluidStack;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -26,6 +27,7 @@ import static com.simibubi.create.content.kinetics.belt.behaviour.BeltProcessing
 public abstract class SpoutBlockEntityMixin extends SmartBlockEntity {
 
     @Shadow SmartFluidTankBehaviour tank;
+    @Shadow protected abstract FluidStack getCurrentFluidInTank();
 
     public SpoutBlockEntityMixin(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
@@ -33,14 +35,13 @@ public abstract class SpoutBlockEntityMixin extends SmartBlockEntity {
 
     @Inject(
             method = "onItemReceived(Lcom/simibubi/create/content/kinetics/belt/transport/TransportedItemStack;Lcom/simibubi/create/content/kinetics/belt/behaviour/TransportedItemStackHandlerBehaviour;)Lcom/simibubi/create/content/kinetics/belt/behaviour/BeltProcessingBehaviour$ProcessingResult;",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lcom/simibubi/create/content/fluids/spout/FillingBySpout;canItemBeFilled(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;)Z"
-            ),
-            cancellable = true
+            at = @At("HEAD"), cancellable = true
     )
     private void recipeItemStackCache(TransportedItemStack transported, TransportedItemStackHandlerBehaviour handler, CallbackInfoReturnable<BeltProcessingBehaviour.ProcessingResult> cir) {
-        railwaysTweaks$cacheUnfillableItems(transported, cir);
+        if (handler.blockEntity.isVirtual())
+            cir.setReturnValue(PASS);
+        else
+            railwaysTweaks$cacheUnfillableItems(transported, cir);
     }
 
     @Unique
@@ -59,7 +60,7 @@ public abstract class SpoutBlockEntityMixin extends SmartBlockEntity {
             }
             if (tank.isEmpty())
                 cir.setReturnValue(HOLD);
-            if (FillingBySpout.getRequiredAmountForItem(level, transported.stack, tank.getPrimaryHandler().getFluid()) == -1)
+            if (FillingBySpout.getRequiredAmountForItem(level, transported.stack, getCurrentFluidInTank()) == -1)
                 cir.setReturnValue(PASS);
             cir.setReturnValue(HOLD);
         }
