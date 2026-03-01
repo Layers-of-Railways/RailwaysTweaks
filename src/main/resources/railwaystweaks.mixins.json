@@ -8,8 +8,10 @@
     "DedicatedServerMixin",
     "InventoryChangeTriggerMixin",
     "MinecraftServerMixin",
+    "PlayerListMixin",
     "ServerPlayerMixin",
     "ServerStatusPacketListenerImplMixin",
+    "UUIDUtilMixin",
     "compat.appleskin.SyncHandlerMixin",
     "compat.carryon.PlacementHandlerMixin",
     "compat.create.AbstractBogeyBlockEntityMixin",
@@ -18,6 +20,7 @@
     "compat.create.BasinRecipeMixin",
     "compat.create.CarriageBogeyMixin",
     "compat.create.ScheduleRuntimeMixin",
+    "compat.create.SpoutBlockEntityMixin",
     "compat.create.StationSummaryDisplaySourceMixin",
     "compat.create.TrainMixin",
     "compat.dcintegration.DiscordEventListenerMixin",
@@ -25,8 +28,7 @@
     "compat.enchancement.SlideComponentMixin",
     "compat.farmersrespite.TeaBushBlockMixin",
     "compat.tconstruct.LazyModifierMixin",
-    "compat.tconstruct.SimpleChannelAccessor",
-    "compat.create.SpoutBlockEntityMixin"
+    "compat.tconstruct.SimpleChannelAccessor"
   ],
   "client": [
     "client.HttpTextureMixin",
@@ -38,8 +40,8 @@
     "client.compat.porting_lib.PortingLibObjLoaderMixin"
   ],
   "server": [
-    "server.compat.create.TrackBlockMixin",
-    "server.compat.create.CopycatBlockMixin"
+    "server.compat.create.CopycatBlockMixin",
+    "server.compat.create.TrackBlockMixin"
   ],
   "injectors": {
     "defaultRequire": 1

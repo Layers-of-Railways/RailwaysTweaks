@@ -1,11 +1,10 @@
 package dev.ithundxr.railwaystweaks;
 
-import com.simibubi.create.content.equipment.wrench.WrenchItem;
-import com.simibubi.create.content.trains.track.TrackBlock;
 import dev.ithundxr.railwaystweaks.commands.RailwaysTweaksCommands;
 import dev.ithundxr.railwaystweaks.compat.BanModCompat;
 import dev.ithundxr.railwaystweaks.compat.create.recipe_trie.RecipeTrieFinder;
 import dev.ithundxr.railwaystweaks.utils.MSPTTracker;
+import dev.ithundxr.railwaystweaks.utils.UUIDReplacementManager;
 import dev.ithundxr.railwaystweaks.utils.UnfillableItemsCache;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.ModInitializer;
@@ -28,6 +27,7 @@ public class RailwaysTweaks implements ModInitializer {
     public void onInitialize() {
         LOGGER.info("Railways Tweaks is loading...");
 
+        UUIDReplacementManager.init();
         RailwaysTweaksCommands.init();
 
         var resourceManager = ResourceManagerHelper.get(PackType.SERVER_DATA);
