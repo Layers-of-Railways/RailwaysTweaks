@@ -57,12 +57,12 @@ public abstract class SpoutBlockEntityMixin extends SmartBlockEntity {
             if (!FillingBySpout.canItemBeFilled(level, transportedStack)) {
                 UnfillableItemsCache.INSTANCE.add(stackId);
                 cir.setReturnValue(PASS);
-            }
-            if (tank.isEmpty())
+            } else if (tank.isEmpty())
                 cir.setReturnValue(HOLD);
-            if (FillingBySpout.getRequiredAmountForItem(level, transported.stack, getCurrentFluidInTank()) == -1)
+            else if (FillingBySpout.getRequiredAmountForItem(level, transported.stack, getCurrentFluidInTank()) == -1)
                 cir.setReturnValue(PASS);
-            cir.setReturnValue(HOLD);
+            else
+                cir.setReturnValue(HOLD);
         }
     }
 }
