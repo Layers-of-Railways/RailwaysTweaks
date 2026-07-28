@@ -67,12 +67,6 @@ dependencies {
     // Compat
     modImplementation("maven.modrinth:banhammer:0.7.1+1.20.1")
     modImplementation(":ACME_Admin-0.1.0-beta.1+fabric-mc1.20.1-local")
-
-    modCompileOnly("de.erdbeerbaerlp:dcintegration.common:3.0.7") {
-        isChanging = true
-        isTransitive = false
-    }
-    modCompileOnly("maven.modrinth:dcintegration:WLOprDDs")
     
     modCompileOnly("maven.modrinth:enchancement:1.20-26")
 

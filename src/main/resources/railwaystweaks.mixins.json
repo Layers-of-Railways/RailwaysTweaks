@@ -23,8 +23,6 @@
     "compat.create.SpoutBlockEntityMixin",
     "compat.create.StationSummaryDisplaySourceMixin",
     "compat.create.TrainMixin",
-    "compat.dcintegration.DiscordEventListenerMixin",
-    "compat.dcintegration.FabricMessageUtilsMixin",
     "compat.enchancement.SlideComponentMixin",
     "compat.farmersrespite.TeaBushBlockMixin",
     "compat.tconstruct.LazyModifierMixin",
