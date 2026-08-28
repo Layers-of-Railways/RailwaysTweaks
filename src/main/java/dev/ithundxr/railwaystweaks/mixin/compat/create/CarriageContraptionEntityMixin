@@ -1,0 +1,57 @@
+package dev.ithundxr.railwaystweaks.mixin.compat.create;
+
+import com.simibubi.create.content.contraptions.OrientedContraptionEntity;
+import com.simibubi.create.content.trains.entity.Carriage;
+import com.simibubi.create.content.trains.entity.CarriageContraptionEntity;
+import com.simibubi.create.content.trains.entity.Train;
+import com.simibubi.create.foundation.utility.Components;
+import com.simibubi.create.foundation.utility.Lang;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+
+import java.util.List;
+
+@Mixin(CarriageContraptionEntity.class)
+public class CarriageContraptionEntityMixin extends OrientedContraptionEntity {
+    @Shadow
+    private Carriage carriage;
+
+    public CarriageContraptionEntityMixin(EntityType<?> type, Level world) {
+        super(type, world);
+    }
+
+    @Override
+    public boolean startControlling(BlockPos controlsLocalPos, Player player) {
+        if (player == null || player.isSpectator())
+            return false;
+        if (carriage == null)
+            return false;
+        if (carriage.train.derailed)
+            return false;
+
+        Train train = carriage.train;
+        if (train.runtime.getSchedule() != null && !train.runtime.paused) {
+            List<Component> queued = ((TrainStatusAccessor) train.status).getQueued();
+            MutableComponent message = Lang.translateDirect("train.status.paused_for_manual");
+            MutableComponent component =
+                    message.getString().equals("Schedule paused for manual controls")
+                        ? message.append(" by " + player.getName().getString())
+                        : Component.literal("[" + player.getName().getString() + "] ").append(message);
+            queued.add(Components.literal(" - ").withStyle(ChatFormatting.GRAY)
+                .append(component.withStyle(st -> st.withColor(0xD5ECC2))));
+            if (queued.size() > 3)
+                queued.remove(0);
+        }
+        train.navigation.cancelNavigation();
+        train.runtime.paused = true;
+        train.navigation.waitingForSignal = null;
+        return true;
+    }
+}
