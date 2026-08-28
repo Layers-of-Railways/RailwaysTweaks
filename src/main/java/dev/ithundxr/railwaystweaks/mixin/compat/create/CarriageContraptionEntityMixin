@@ -1,9 +1,12 @@
 package dev.ithundxr.railwaystweaks.mixin.compat.create;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.simibubi.create.content.contraptions.OrientedContraptionEntity;
 import com.simibubi.create.content.trains.entity.Carriage;
 import com.simibubi.create.content.trains.entity.CarriageContraptionEntity;
 import com.simibubi.create.content.trains.entity.Train;
+import com.simibubi.create.content.trains.entity.TrainStatus;
 import com.simibubi.create.foundation.utility.Components;
 import com.simibubi.create.foundation.utility.Lang;
 import net.minecraft.ChatFormatting;
@@ -15,6 +18,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
 
@@ -27,31 +33,18 @@ public class CarriageContraptionEntityMixin extends OrientedContraptionEntity {
         super(type, world);
     }
 
-    @Override
-    public boolean startControlling(BlockPos controlsLocalPos, Player player) {
-        if (player == null || player.isSpectator())
-            return false;
-        if (carriage == null)
-            return false;
-        if (carriage.train.derailed)
-            return false;
-
+    @WrapOperation(method = "startControlling", at = @At(value = "INVOKE", target="Lcom/simibubi/create/content/trains/entity/TrainStatus;manualControls()V"))
+    public void disableManualControls(TrainStatus instance, Operation<Void> original, BlockPos controlsLocalPos, Player player) {
         Train train = carriage.train;
-        if (train.runtime.getSchedule() != null && !train.runtime.paused) {
-            List<Component> queued = ((TrainStatusAccessor) train.status).getQueued();
-            MutableComponent message = Lang.translateDirect("train.status.paused_for_manual");
-            MutableComponent component =
-                    message.getString().equals("Schedule paused for manual controls")
-                        ? message.append(" by " + player.getName().getString())
-                        : Component.literal("[" + player.getName().getString() + "] ").append(message);
-            queued.add(Components.literal(" - ").withStyle(ChatFormatting.GRAY)
-                .append(component.withStyle(st -> st.withColor(0xD5ECC2))));
-            if (queued.size() > 3)
-                queued.remove(0);
-        }
-        train.navigation.cancelNavigation();
-        train.runtime.paused = true;
-        train.navigation.waitingForSignal = null;
-        return true;
+        List<Component> queued = ((TrainStatusAccessor) train.status).getQueued();
+        MutableComponent message = Lang.translateDirect("train.status.paused_for_manual");
+        MutableComponent component =
+                message.getString().equals("Schedule paused for manual controls")
+                    ? message.append(" by " + player.getName().getString())
+                    : Component.literal("[" + player.getName().getString() + "] ").append(message);
+        queued.add(Components.literal(" - ").withStyle(ChatFormatting.GRAY)
+            .append(component.withStyle(st -> st.withColor(0xD5ECC2))));
+        if (queued.size() > 3)
+            queued.remove(0);
     }
 }
