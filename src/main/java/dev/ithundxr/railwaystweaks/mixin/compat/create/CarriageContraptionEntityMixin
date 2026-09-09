@@ -34,7 +34,7 @@ public class CarriageContraptionEntityMixin extends OrientedContraptionEntity {
     }
 
     @WrapOperation(method = "startControlling", at = @At(value = "INVOKE", target="Lcom/simibubi/create/content/trains/entity/TrainStatus;manualControls()V"))
-    public void disableManualControls(TrainStatus instance, Operation<Void> original, BlockPos controlsLocalPos, Player player) {
+    public void changeManualControlsMessage(TrainStatus instance, Operation<Void> original, BlockPos controlsLocalPos, Player player) {
         Train train = carriage.train;
         List<Component> queued = ((TrainStatusAccessor) train.status).getQueued();
         MutableComponent message = Lang.translateDirect("train.status.paused_for_manual");
