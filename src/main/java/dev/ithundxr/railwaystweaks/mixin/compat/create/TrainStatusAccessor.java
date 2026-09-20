@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 
 import java.util.List;
 
-@Mixin(TrainStatus.class)
+@Mixin(value = TrainStatus.class, remap = false)
 public interface TrainStatusAccessor {
     @Accessor("queued")
     List<Component> getQueued();
