@@ -20,7 +20,6 @@
     "compat.create.BasinRecipeMixin",
     "compat.create.CarriageBogeyMixin",
     "compat.create.ScheduleRuntimeMixin",
-    "compat.create.SpoutBlockEntityMixin",
     "compat.create.StationSummaryDisplaySourceMixin",
     "compat.create.TrainMixin",
     "compat.dcintegration.DiscordEventListenerMixin",
