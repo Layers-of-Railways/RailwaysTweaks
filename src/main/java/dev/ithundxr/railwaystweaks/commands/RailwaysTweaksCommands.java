@@ -37,12 +37,6 @@ public class RailwaysTweaksCommands {
         });
 
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
-            dispatcher.register(literal("avgmspt")
-                    .requires(cs -> cs.hasPermission(2))
-                    .executes(ctx -> avgMSPT(ctx.getSource())));
-        });
-
-        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
             dispatcher.register(literal("uuid")
                     .then(Commands.argument("player_name", StringArgumentType.string())
                             .executes(RailwaysTweaksCommands::getPlayerUUID)));
@@ -116,14 +110,6 @@ public class RailwaysTweaksCommands {
 
         source.sendSuccess(() -> Component.literal(s.toString()), true);
 
-        return 0;
-    }
-
-    private static int avgMSPT(CommandSourceStack source) {
-        source.sendSuccess(
-                () -> Component.literal(
-                        "Average MSPT (10s): " + String.format("%.1f", RailwaysTweaks.MSPT_TRACKER.getAverageMSPT())),
-                true);
         return 0;
     }
 
