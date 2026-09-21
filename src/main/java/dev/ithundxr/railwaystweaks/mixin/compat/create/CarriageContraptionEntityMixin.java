@@ -24,27 +24,34 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
 
-@Mixin(CarriageContraptionEntity.class)
+@Mixin(value = CarriageContraptionEntity.class, remap = false)
 public class CarriageContraptionEntityMixin extends OrientedContraptionEntity {
-    @Shadow
-    private Carriage carriage;
+
+    @Shadow private Carriage carriage;
 
     public CarriageContraptionEntityMixin(EntityType<?> type, Level world) {
         super(type, world);
     }
 
-    @WrapOperation(method = "startControlling", at = @At(value = "INVOKE", target="Lcom/simibubi/create/content/trains/entity/TrainStatus;manualControls()V"))
+    @WrapOperation(
+            method = "startControlling",
+            at = @At(
+                    value = "INVOKE",
+                    target="Lcom/simibubi/create/content/trains/entity/TrainStatus;manualControls()V"
+            )
+    )
     public void changeManualControlsMessage(TrainStatus instance, Operation<Void> original, BlockPos controlsLocalPos, Player player) {
         Train train = carriage.train;
-        List<Component> queued = ((TrainStatusAccessor) train.status).getQueued();
+        List<Component> queuedStatus = ((TrainStatusAccessor) train.status).getQueued();
         MutableComponent message = Lang.translateDirect("train.status.paused_for_manual");
         MutableComponent component =
                 message.getString().equals("Schedule paused for manual controls")
                     ? message.append(" by " + player.getName().getString())
                     : Component.literal("[" + player.getName().getString() + "] ").append(message);
-        queued.add(Components.literal(" - ").withStyle(ChatFormatting.GRAY)
+
+        queuedStatus.add(Components.literal(" - ").withStyle(ChatFormatting.GRAY)
             .append(component.withStyle(st -> st.withColor(0xD5ECC2))));
-        if (queued.size() > 3)
-            queued.remove(0);
+
+        if (queuedStatus.size() > 3) queuedStatus.remove(0);
     }
 }
