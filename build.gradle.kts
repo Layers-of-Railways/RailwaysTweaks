@@ -1,15 +1,22 @@
 import net.fabricmc.loom.api.LoomGradleExtensionAPI
 
 plugins {
-    id("fabric-loom") version "1.7.+"
+    id("net.fabricmc.fabric-loom-remap") version "1.19-SNAPSHOT"
 }
 
 version = "mod_version"()
 group = "maven_group"()
 base.archivesName.set("archives_base_name"())
 
+loom {
+    runs {
+        configureEach { 
+            systemProperties.put("mixin.debug.export", "true")
+        }
+    }
+}
+
 repositories {
-    maven("https://maven.quiltmc.org/repository/release") // Quilt Mappings
     maven("https://maven.parchmentmc.org") // Parchment mappings
     maven("https://mvn.devos.one/snapshots/") // Create, Porting Lib, Forge Tags, Milk Lib, Registrate
     maven("https://mvn.devos.one/releases/") // Porting Lib Releases
@@ -65,9 +72,9 @@ dependencies {
     modCompileOnly("maven.modrinth:appleskin:2.5.1+mc1.20")
 
     // Compat
-    modImplementation("maven.modrinth:banhammer:0.7.1+1.20.1")
-    modImplementation(":ACME_Admin-0.1.0-beta.1+fabric-mc1.20.1-local")
-    
+    modCompileOnly("maven.modrinth:banhammer:0.7.1+1.20.1")
+    modCompileOnly(":ACME_Admin-0.1.0-beta.1+fabric-mc1.20.1-local")
+
     modCompileOnly("maven.modrinth:enchancement:1.20-26")
 
     modCompileOnly("tschipp.carryon:carryon-fabric-1.20.1:2.1.2.7") { isTransitive = false }

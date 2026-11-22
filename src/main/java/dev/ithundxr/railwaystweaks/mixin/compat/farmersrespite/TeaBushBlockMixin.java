@@ -6,13 +6,12 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Pseudo;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import static com.chefsdelights.farmersrespite.common.block.TeaBushBlock.AGE;
-import static dev.ithundxr.railwaystweaks.RailwaysTweaks.LOGGER;
-
+@Pseudo
 @Mixin(TeaBushBlock.class)
 public class TeaBushBlockMixin {
     @Inject(
@@ -21,7 +20,7 @@ public class TeaBushBlockMixin {
             cancellable = true
     )
     private void stopGrowthAcceleratorCrash(ServerLevel serverLevel, RandomSource randomSource, BlockPos blockPos, BlockState blockState, CallbackInfo ci) {
-        int i = blockState.getValue(AGE);
+        int i = blockState.getValue(TeaBushBlock.AGE);
         if (i > 2) ci.cancel();
     }
 }

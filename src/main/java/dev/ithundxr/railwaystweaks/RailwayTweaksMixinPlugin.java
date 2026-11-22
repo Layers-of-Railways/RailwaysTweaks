@@ -10,7 +10,8 @@ import java.util.Set;
 public class RailwayTweaksMixinPlugin implements IMixinConfigPlugin {
     private static final boolean FLATTEN_CHUNK_PALETTES = Boolean.getBoolean("railwayTweaks.fireblanket.flattenChunkPalettes");
     private static final boolean VIOLENTLY_CACHE_COPYCATS = Boolean.getBoolean("railwayTweaks.violentlyCacheCopycats");
-
+    private static final boolean SIGNAL_BOUNDARY_CACHE_THROW_WARNING = Boolean.getBoolean("railwayTweaks.signalBoundaryCacheThrowWarning");
+    
     @Override
     public void onLoad(String mixinPackage) { } // NO-OP
 
@@ -21,6 +22,7 @@ public class RailwayTweaksMixinPlugin implements IMixinConfigPlugin {
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
         if (mixinClassName.contains("LevelChunkSectionMixin")) return FLATTEN_CHUNK_PALETTES;
         if (mixinClassName.contains("client.compat.copycatsplus")) return VIOLENTLY_CACHE_COPYCATS;
+        if (mixinClassName.contains("server.compat.create.SignalBoundaryMixin")) return SIGNAL_BOUNDARY_CACHE_THROW_WARNING;
         return true;
     }
 

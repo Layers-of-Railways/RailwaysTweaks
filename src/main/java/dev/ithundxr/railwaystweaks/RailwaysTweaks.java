@@ -29,7 +29,7 @@ public class RailwaysTweaks implements ModInitializer {
         var resourceManager = ResourceManagerHelper.get(PackType.SERVER_DATA);
         resourceManager.registerReloadListener(RecipeTrieFinder.LISTENER);
 
-        if (FabricLoader.getInstance().getEnvironmentType() == EnvType.SERVER)
+        if (FabricLoader.getInstance().getEnvironmentType() == EnvType.SERVER && FabricLoader.getInstance().isModLoaded("banhammer"))
             BanModCompat.init();
     }
 
