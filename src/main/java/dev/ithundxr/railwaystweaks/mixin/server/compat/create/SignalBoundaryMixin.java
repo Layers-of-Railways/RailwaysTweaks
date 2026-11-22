@@ -20,6 +20,6 @@ public class SignalBoundaryMixin {
 	@Expression("invalid = true")
 	@Inject(method = "resolveSignalChain", at = @At("MIXINEXTRAS:EXPRESSION"))
 	private void rt$logCacheThrows(TrackGraph graph, boolean side, CallbackInfoReturnable<SignalState> cir, @Local(name = "uuid") UUID uuid) {
-		RailwaysTweaks.LOGGER.debug("Other signal is null: {}", uuid);
+		RailwaysTweaks.LOGGER.info("Other signal is null: {}", uuid);
 	}
 }
